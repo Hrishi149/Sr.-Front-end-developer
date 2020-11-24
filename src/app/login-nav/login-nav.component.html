@@ -1,0 +1,170 @@
+<div class="row padd3">
+    <div class="col-md-8">
+        <span style="font-size: 20px;">
+            User List
+        </span>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add User
+        </button>
+    </div>
+</div>
+<div class="row padd2">
+    <div class="col-md-8">
+        <div class="mat-app-background">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="birthDate">
+                    <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="lang">
+                    <th mat-header-cell *matHeaderCellDef> Language </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lang}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="gender">
+                    <th mat-header-cell *matHeaderCellDef> Gender </th>
+                    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-md-4 ">
+
+        <div class="card box">
+            <div class="col-md-12 centerAllign">
+                <div class="row padd15">
+                    <span>
+                        List Of Progress
+                    </span>
+                </div>
+                <div class="col-md-12 padTop5">
+                    <mat-progress-bar mode="determinate" *ngIf="userLenth=='10'" values=100></mat-progress-bar>
+                    <mat-progress-bar mode="determinate" *ngIf="userLenth!='10'" [value]="userLenth"></mat-progress-bar>
+
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align: center;">
+                <div class="row padTop5">
+                    <span>
+                        Female Users
+                    </span>
+                </div>
+                <div class="col-md-12 padTop5">
+                    <span>
+                        {{femaleCount}}
+                    </span>
+
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-md-12" style="text-align: center;">
+                <div class="row padTop5">
+                    <span>
+                        Male Users
+                    </span>
+                </div>
+                <div class="col-md-12 padTop5">
+                    <span>
+                        {{malecount}}
+                    </span>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal For Add User -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-md-12">
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" [(ngModel)]="valuess">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-12">
+                    <mat-form-field color="accent" appearance="fill">
+                        <mat-label>Birhdate</mat-label>
+                        <input matInput [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Toppings</mat-label>
+                        <mat-select [(ngModel)]="toppings" multiple>
+                            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <mat-label>Gender</mat-label> <br> <br>
+                    <mat-radio-group aria-label="Select an option">
+                        <mat-radio-button value="1">Male</mat-radio-button>&nbsp; &nbsp;
+                        <mat-radio-button value="2">Female</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>About</mat-label>
+                        <textarea matInput placeholder="Ex. 100 Main St"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row buttonSave">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary ">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal For Add User -->
